@@ -1,0 +1,22 @@
+<main class="home">
+  <search-input [value]="searchValue" [onChange]="onInputChange.bind(this)"></search-input>
+  <div>
+    <button
+      class="product-list-selector"
+      (click)="onListTypeClick('popular')"
+      [ngClass]="{ active: productListType === 'popular' }"
+    >
+      popular
+    </button>
+    <button
+      class="product-list-selector"
+      (click)="onListTypeClick('newest')"
+      [ngClass]="{ active: productListType === 'newest' }"
+    >
+      newest
+    </button>
+  </div>
+  <div *ngIf="shopProducts.length > 0">
+    <product-card *ngFor="let product of shopProducts" [product]="product"></product-card>
+  </div>
+</main>

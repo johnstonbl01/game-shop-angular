@@ -1,0 +1,13 @@
+<div class="input-layout" [ngClass]="{ 'focus-border': inputIsFocused }">
+  <img src="/assets/search.svg" alt="search icon" class="search-icon" />
+  <input
+    ref="search"
+    type="text"
+    [(value)]="value"
+    (input)="onChange($event)"
+    (focus)="onInputFocus()"
+    (blur)="onInputFocus()"
+    (keypress)="onInputSubmit($event)"
+    placeholder="Find your game..."
+  />
+</div>

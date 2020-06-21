@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
+import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
-  title = 'game-shop-angular';
+  constructor(public productService: ProductService) {}
+
+  ngOnInit() {
+    this.productService.fetchProducts();
+  }
 }

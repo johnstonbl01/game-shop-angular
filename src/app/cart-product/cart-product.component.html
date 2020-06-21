@@ -1,0 +1,10 @@
+<article class="cart-product" [ngClass]="{ 'hide-last-border': last }">
+  <div class="product-layout">
+    <div class="box-img-layout">
+      <img [src]="product.url" [alt]="productImageAltText()" />
+    </div>
+    <p class="cart-product-name">{{ product.name }}</p>
+  </div>
+
+  <span>${{ product.price }}</span>
+</article>

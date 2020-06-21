@@ -1,0 +1,28 @@
+<div
+  class="flyout"
+  [ngClass]="{
+    show: cartService.showCart,
+    hide: !cartService.showCart
+  }"
+>
+  <header>
+    <h1>cart</h1>
+    <div>
+      <img src="/assets/x.svg" alt="close cart" (click)="cartService.setShowCart(false)" />
+    </div>
+  </header>
+  <div class="product-container">
+    <cart-product
+      *ngFor="let product of cartService.cart; last as last"
+      [product]="product"
+      [last]="last"
+    ></cart-product>
+  </div>
+  <div class="total-layout">
+    <h2>Total</h2>
+    <h2>${{ calculateTotal(this.cartService.cart) }}</h2>
+  </div>
+  <div class="checkout-layout">
+    <button (click)="onCheckoutClick()">checkout</button>
+  </div>
+</div>

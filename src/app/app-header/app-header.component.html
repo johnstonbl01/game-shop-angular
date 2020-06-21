@@ -1,0 +1,9 @@
+<header>
+  <h1 (click)="routeToHome()">games<span>.</span></h1>
+  <div class="cart-container" (click)="cartService.setShowCart(true)">
+    <span *ngIf="cartService.cart.length > 0" class="items-in-cart">{{
+      cartService.cart.length
+    }}</span>
+    <img src="/assets/shopping-bag.svg" alt="shopping bag" />
+  </div>
+</header>

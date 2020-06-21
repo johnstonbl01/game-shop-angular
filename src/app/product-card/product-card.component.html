@@ -1,0 +1,17 @@
+<article class="product-card">
+  <div class="card-content" (click)="routeToProductPage()">
+    <div class="box-img-layout">
+      <img [src]="product.url" [alt]="productImageAltText()" />
+    </div>
+    <div class="product-details">
+      <p class="product-name">{{ product.name }}</p>
+      <div class="product-extra-info-layout">
+        <span class="product-published">{{ product.published }}</span>
+        <span>${{ product.price }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="add-to-bag-btn" (click)="cartService.addToCart(product)">
+    <img src="/assets/plus-circle.svg" alt="Add this product to your bag" />
+  </div>
+</article>

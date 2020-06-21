@@ -1,0 +1,31 @@
+<main class="product-detail" *ngIf="product">
+  <img class="product-image" [src]="product.url" [alt]="productImageAltText" />
+  <div class="product-header">
+    <h2>{{ product.name }}</h2>
+    <h4 class="product-price">${{ product.price }}</h4>
+  </div>
+
+  <p>{{ product.desc }}</p>
+
+  <div class="product-footer-layout">
+    <div>
+      <div class="product-info-layout">
+        <img class="icon" src="/assets/users.svg" alt="number of players icon" />
+        <span>{{ product.players }} players</span>
+      </div>
+      <div class="product-info-layout">
+        <img class="icon" src="/assets/clock.svg" alt="number of players icon" />
+        <span>
+          {{ product.gameTimeHours }} {{ product.gameTimeHours === '1' ? 'hour' : 'hours' }}
+        </span>
+      </div>
+      <div class="product-info-layout">
+        <img class="icon" src="/assets/star.svg" alt="number of players icon" />
+        <span>{{ product.rating }}</span>
+      </div>
+    </div>
+    <button class="product-add-to-bag-btn" (click)="cartService.addToCart(product)">
+      add to bag
+    </button>
+  </div>
+</main>
