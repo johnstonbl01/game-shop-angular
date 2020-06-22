@@ -20,6 +20,10 @@ export class HomeComponent {
     return b.rating - a.rating;
   }
 
+  sortByPublishDate(a: Game, b: Game): number {
+    return parseInt(b.published, 10) - parseInt(a.published, 10);
+  }
+
   onListTypeClick(listType): void | Subscription {
     if (!this.productService.products || !listType) {
       return null;
@@ -35,9 +39,8 @@ export class HomeComponent {
       return this.filterProductsByListType(this.productListType);
     }
 
-    return this.productService.products.subscribe((products: Game[]) => {
-      const sortFn =
-        this.productListType === 'newest' ? (a, b) => b.published - a.published : this.sortByRating;
+    return this.productService.products.subscribe((products: Game[]): void => {
+      const sortFn = this.productListType === 'newest' ? this.sortByPublishDate : this.sortByRating;
 
       this.shopProducts = products
         .slice()
@@ -46,16 +49,16 @@ export class HomeComponent {
     });
   }
 
-  filterProductsByListType(listType) {
-    const sortFn = listType === 'newest' ? (a, b) => b.published - a.published : this.sortByRating;
+  filterProductsByListType(listType: string): Subscription {
+    const sortFn = listType === 'newest' ? this.sortByPublishDate : this.sortByRating;
 
-    return this.productService.products.subscribe((products: Game[]) => {
+    return this.productService.products.subscribe((products: Game[]): void => {
       this.shopProducts = products.slice().sort(sortFn);
     });
   }
 
   ngOnInit() {
-    this.productService.products.subscribe((products: Game[]) => {
+    this.productService.products.subscribe((products: Game[]): void => {
       this.shopProducts = products.slice().sort(this.sortByRating);
     });
   }

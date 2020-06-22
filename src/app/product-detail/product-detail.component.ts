@@ -25,7 +25,7 @@ export class ProductDetailComponent {
 
   ngOnInit() {
     const productId = this.route.snapshot.paramMap.get('id');
-    this.productService.products.subscribe((products: Game[]) => {
+    this.productService.products.subscribe((products: Game[]): void => {
       this.product = products.find((prod) => prod.id === productId);
     });
   }
